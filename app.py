@@ -1,17 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Current position'
+    return render_template('index.html')
 
-@app.route('/open')
-def cakes():
-    return 'Open Blinds'
-
-@app.route('/close')
-    return 'Close Blinds'
+@app.route('/blinds/<function>')
+def openBlinds(function):
+    return render_template('blinds.html', function=function)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
